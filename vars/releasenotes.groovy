@@ -24,10 +24,13 @@ def call (Map config=[:]) {
             }
         }
     }
-    
+
     def date = new Date();
     def sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
     echo "Data and Time is: " + sdf.format(date);
+
+    // interpolate the build from env var
+    echo "Build Number is ${BUILD_NUMBER}";
 
     if (config.changes != "false") {
         echo "changes";
