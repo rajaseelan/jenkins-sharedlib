@@ -1,6 +1,8 @@
 import java.io.*;
 import groovy.io.*;
 
+// cannot survive jenkins restart
+@NonCPS
 // format to make it a global function
 def call (Map config=[:]) {
     def String dir_path = "/home/raja/code/jenkins-go";
