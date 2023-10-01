@@ -28,10 +28,10 @@ def call (Map config=[:]) {
 
     def date = new Date();
     def sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-    echo "Data and Time is: " + sdf.format(date);
+    writer.writeLine("Data and Time is: " + sdf.format(date));
 
     // interpolate the build from env var
-    echo "Build Number is ${BUILD_NUMBER}";
+    writer.writeLine("Build Number is ${BUILD_NUMBER}");
 
     // changesets
     def changeLogSets = currentBuild.changeSets;
