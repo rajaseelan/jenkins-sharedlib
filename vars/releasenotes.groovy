@@ -24,23 +24,24 @@ def call (Map config=[:]) {
                 writer.writeLine(file.name + '\t' + file.length());
             }
         }
-    }
 
-    def date = new Date();
-    def sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-    writer.writeLine("Data and Time is: " + sdf.format(date));
 
-    // interpolate the build from env var
-    writer.writeLine("Build Number is ${BUILD_NUMBER}");
+        def date = new Date();
+        def sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        writer.writeLine("Data and Time is: " + sdf.format(date));
 
-    // changesets
-    def changeLogSets = currentBuild.changeSets;
-    for (change in changeLogSets) {
-        def entries = change.items;
-        for (entry in entries) {
-            echo "${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}";
-            for (file in entry.affectedFiles) {
-                echo "  ${file.editType.name} ${file.path}";
+        // interpolate the build from env var
+        writer.writeLine("Build Number is ${BUILD_NUMBER}");
+
+        // changesets
+        def changeLogSets = currentBuild.changeSets;
+        for (change in changeLogSets) {
+            def entries = change.items;
+            for (entry in entries) {
+                echo "${entry.commitId} by ${entry.author} on ${new Date(entry.timestamp)}: ${entry.msg}";
+                for (file in entry.affectedFiles) {
+                    echo "  ${file.editType.name} ${file.path}";
+                }
             }
         }
     }
