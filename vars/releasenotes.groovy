@@ -26,4 +26,7 @@ def call (Map config=[:]) {
     if (config.changes != "false") {
         echo "changes";
     }
+
+    def data = new Date();
+    def sdf = new SimpleDateFormat("<</dd/yyyy HH:mm:ss");
 }
